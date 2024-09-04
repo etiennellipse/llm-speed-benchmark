@@ -7,7 +7,6 @@ from ollama import ResponseError
 
 import prompts
 
-OLLAMA_URL = "http://localhost:11434"
 MODELS = [
     "llama3.1:8b-instruct-q8_0",
     "llama3.1:70b-instruct-q8_0",
@@ -35,13 +34,10 @@ def pull_model(model_name):
         print(f"Failed to pull model {model_name}: {e}")
 
 
-
-ollama_client = ollama.Client(OLLAMA_URL)
-
 print("Pull all required models")
 for model in MODELS:
     try:
-        ollama_client.show(model)
+        ollama.show(model)
     except ResponseError as e:
         print(f"Pulling model {model}...")
         # Launch CLI with "ollama pull <model>" to pull the model
